@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "rival_100.h"
+#include "mice/rival_100.h"
 
 int main(int argc, char** argv) {
 
@@ -16,7 +16,8 @@ int main(int argc, char** argv) {
     printf("%d %x %x\n", dev.bustype, dev.vendor, dev.procuct);
     if (rival_100_is_device(dev)) {
         printf("Found Rival 100\n");
-        rival_100_set_color(dev, 255, 42, 255);
+        rival_100_set_color(dev, 255, 0, 255);
+	rival_100_save(dev);
     }else
         printf("Not a Rival 100\n");
     device_close(dev.fd);

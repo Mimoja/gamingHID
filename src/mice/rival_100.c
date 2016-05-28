@@ -21,7 +21,7 @@ int rival_100_is_device(device_t device) {
     return 0;
 }
 
-int rival_100_set_senitivity(device_t device, int preset, int value) {
+int rival_100_set_senitivity(device_t device, char preset, char value) {
     char cmd[3];
     cmd[0] = CMD_SENSITIVITY;
     cmd[1] = preset;
@@ -34,7 +34,7 @@ int rival_100_set_senitivity(device_t device, int preset, int value) {
     return device_write(device.fd, cmd, 3);
 }
 
-int rival_100_set_pollingrate(device_t device, int value) {
+int rival_100_set_pollingrate(device_t device, char value) {
     char cmd[2];
     cmd[0] = CMD_POLLING;
     cmd[1] = value;
@@ -54,3 +54,43 @@ int rival_100_set_color(device_t device, char red, char green, char blue) {
 
     return device_write(device.fd, cmd, 5);
 }
+
+int rival_100_set_lighteffect(device_t device, char effect)
+{
+    char cmd[3];
+    cmd[0] = CMD_LIGHT_EFFECT;
+    cmd[1] = 0x00;
+    cmd[2] = effect;
+
+    return device_write(device.fd, cmd, 3);
+}
+
+int rival_100_save(device_t device)
+{
+    char cmd[1];
+    cmd[0] = CMD_SAVE;
+    
+    return device_write(device.fd, cmd, 3);
+}
+
+int rival_100_set_button(device_t device, char action)
+{
+    char cmd[2];
+    cmd[1] = CMD_BUTTON;
+    cmd[2] = action;
+    
+    return device_write(device.fd, cmd, 3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
